@@ -117,18 +117,18 @@ $ kubectl label nodes <INVOKER_NODE_NAME> openwhisk-role=invoker
 You will need to create a mycluster.yaml file that records how the
 OpenWhisk deployment on your cluster will be accessed by clients.  See
 the [ingress discussion](./docs/ingress.md) for details. Below is a sample
-file appropriate for a Minikube cluster where `minikube ip` returns
-`192.168.99.100` and port 31001 is available to be used.
+file appropriate for a Docker EE cluster where the public ip used is
+`52.41.56.149` and port 33000 is available to be used.
 
 ```yaml
 whisk:
   ingress:
     type: NodePort
-    api_host_name: 192.168.99.100
-    api_host_port: 31001
+    api_host_name: 52.41.56.149
+    api_host_port: 33000
 
 nginx:
-  httpsNodePort: 31001
+  httpsNodePort: 33000
 ```
 
 Beyond specifying the ingress, the `mycluster.yaml` file is also used
@@ -137,6 +137,23 @@ and controlling the replication factor of the various micro-services
 that make up the OpenWhisk implementation. See the [configuration
 choices documentation](./docs/configurationChoices.md) for a
 discussion of the primary options.
+
+## Add Docker EE Grants and permissions
+
+Grant the following Docker EE permissions by using this [guide](https://docs.docker.com/ee/ucp/authorization/grant-permissions/):
+
+| Namespace   	| Service Account 	| Role               	| Resource Set         	|
+|-------------	|-----------------	|--------------------	|----------------------	|
+| default     	| default         	| Restricted Control 	| kubernetesnamespaces 	|
+| kube-system  	| default         	| Full Control      	| kubernetesnamespaces 	|
+| openwhisk   	| default         	| Full Control      	| kubernetesnamespaces 	|
+
+Then initialize helm, and wait until `helm version` returns both client and server versions.
+
+```
+helm init
+helm version
+```
 
 ## Deploy With Helm
 

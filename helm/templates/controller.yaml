@@ -31,7 +31,6 @@ spec:
       labels:
         name: {{ .Values.controller.name | quote }}
     spec:
-      serviceAccountName: ow-core
       restartPolicy: {{ .Values.controller.restartPolicy }}
 
       {{- if .Values.affinity.enabled }}

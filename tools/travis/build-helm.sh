@@ -137,7 +137,7 @@ kubectl create namespace openwhisk
 
 # configure Ingress and wsk CLI
 #
-WSK_PORT=31001
+WSK_PORT=33000
 WSK_HOST=$(kubectl describe nodes | grep Hostname: | awk '{print $2}')
 if [ "$WSK_HOST" = "minikube" ]; then
     WSK_HOST=$(minikube ip)

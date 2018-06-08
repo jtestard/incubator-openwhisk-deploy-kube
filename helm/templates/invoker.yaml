@@ -24,7 +24,6 @@ spec:
         name: {{ .Values.invoker.name | quote }}
     spec:
 {{- if eq .Values.invoker.containerFactory.impl "kubernetes" }}
-      serviceAccountName: {{ .Values.invoker.name | quote }}
 {{- end }}
       restartPolicy: {{ .Values.invoker.restartPolicy }}
 

@@ -59,16 +59,16 @@ otherwise use
 kubectl get nodes
 ```
 
-Next pick an unassigned port (eg 31001) and define mycluster.yaml as
+Next pick an unassigned port (eg 33000) and define mycluster.yaml as
 ```yaml
 whisk:
   ingress:
     type: NodePort
     api_host_name: 192.168.99.100
-    api_host_port: 31001
+    api_host_port: 33000
 
 nginx:
-  httpsNodePort: 31001
+  httpsNodePort: 33000
 ```
 
 ## IBM Cloud
@@ -88,10 +88,10 @@ whisk:
   ingress:
     type: NodePort
     api_host_name: YOUR_WORKERS_PUBLIC_IP_ADDR
-    api_host_port: 31001
+    api_host_port: 33000
 
 nginx:
-  httpsNodePort: 31001
+  httpsNodePort: 33000
 ```
 
 ### IBM Cloud standard cluster
